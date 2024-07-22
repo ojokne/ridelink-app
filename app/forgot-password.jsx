@@ -1,14 +1,10 @@
-import { Image } from "expo-image";
 import { Link } from "expo-router";
 import { useState } from "react";
 import {
   StyleSheet,
   Text,
   View,
-  KeyboardAvoidingView,
-  Platform,
   TextInput,
-  TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
@@ -26,12 +22,17 @@ export default function Page() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{ flex: 1 }}>
       <View style={styles.container}>
-        <Image
-          source={require("../assets/images/Logo-01.png")}
-          style={styles.logo}
-          contentFit="contain"
-          transition={1000}
-        />
+        
+        <Text
+          style={{
+            fontSize: 18,
+            marginBottom: 50,
+            color:"#888",
+            textAlign: "center",
+          }}
+        >
+          We will send you a link to reset your password
+        </Text>
 
         <View style={styles.inputContainer}>
           <TextInput
