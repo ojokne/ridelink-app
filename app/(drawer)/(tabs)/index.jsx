@@ -1,93 +1,3 @@
-// import { StatusBar } from "expo-status-bar";
-// import { StyleSheet, View, Text, ScrollView } from "react-native";
-// import PagerView from "react-native-pager-view";
-
-// export default function Page() {
-//   return (
-//     <ScrollView style={{ flex: 1 }}>
-//       <View style={styles.container}>
-//         <View>
-//           <Text style={styles.title}>Latest</Text>
-//         </View>
-
-//         <View
-//           style={{
-//             flex: 1,
-//           }}
-//         >
-//           <View style={styles.latestContainer}>
-//             <PagerView style={{ flex: 1 }} initialPage={0}>
-//               <View style={styles.page} key="1">
-//                 <Text>First page</Text>
-//                 <Text>Swipe ➡️</Text>
-//               </View>
-//               <View style={styles.page} key="2">
-//                 <Text>Second page</Text>
-//               </View>
-//               <View style={styles.page} key="3">
-//                 <Text>Third page</Text>
-//               </View>
-//             </PagerView>
-//           </View>
-
-//           <View
-//             style={{
-//               flex: 1 / 3,
-//               backgroundColor: "red",
-//               marginHorizontal: 10,
-//             }}
-//           >
-//             <Text>
-//               Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
-//               culpa quibusdam ducimus! Facilis, pariatur animi! Quod provident
-//               officia laborum vel.
-//             </Text>
-//           </View>
-//           <View
-//             style={{
-//               flex: 1 / 3,
-//               backgroundColor: "blue",
-//               marginHorizontal: 10,
-//               marginTop: 10,
-//             }}
-//           >
-//             <Text>
-//               Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
-//               culpa quibusdam ducimus! Facilis, pariatur animi! Quod provident
-//               officia laborum vel.
-//             </Text>
-//           </View>
-//         </View>
-
-//         <StatusBar />
-//       </View>
-//     </ScrollView>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//   },
-//   title: {
-//     fontSize: 20,
-//     fontWeight: "bold",
-//     padding: 10,
-//   },
-
-//   latestContainer: {
-//     flex: 1 / 3,
-//   },
-//   page: {
-//     justifyContent: "center",
-//     alignItems: "center",
-//     backgroundColor: "grey",
-//     flex: 1,
-//     height: StyleSheet.absoluteFill,
-//     margin: 10,
-//   },
-// });
-
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -101,7 +11,8 @@ import PagerView from "react-native-pager-view";
 import { primaryColor } from "../../../constants";
 import { useRef, useState } from "react";
 import { Entypo, Feather, MaterialIcons } from "@expo/vector-icons";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const { height } = Dimensions.get("window");
 
@@ -110,7 +21,11 @@ export default function Page() {
   const pagerViewRef = useRef(null);
 
   return (
-    <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.container}>
+    <ScrollView
+      style={{ flex: 1 }}
+      contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={false}
+    >
       <View>
         <Text style={styles.title}>Latest</Text>
       </View>
@@ -363,7 +278,7 @@ export default function Page() {
           <Text style={styles.subTitle}>What do you want to do?</Text>
         </View>
         <View style={styles.contentAction}>
-          <View
+          <TouchableOpacity
             style={{
               justifyContent: "center",
               alignItems: "center",
@@ -373,21 +288,22 @@ export default function Page() {
               elevation: 2,
               borderRadius: 10,
             }}
+            onPress={() => {
+              router.push("/quote");
+            }}
           >
             <Feather name="truck" size={48} color="#ccc" />
-            <Link href="/quote">
-              <Text
-                style={{
-                  color: primaryColor,
-                  fontSize: 14,
-                  fontWeight: "bold",
-                }}
-              >
-                Get Quote
-              </Text>
-            </Link>
-          </View>
-          <View
+            <Text
+              style={{
+                color: primaryColor,
+                fontSize: 14,
+                fontWeight: "400",
+              }}
+            >
+              Get Quote
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
             style={{
               justifyContent: "center",
               alignItems: "center",
@@ -398,21 +314,22 @@ export default function Page() {
               borderRadius: 10,
               marginHorizontal: 10,
             }}
+            onPress={() => {
+              router.push("/airport");
+            }}
           >
             <Entypo name="aircraft" size={48} color="#ccc" />
-            <Link href="/airport">
-              <Text
-                style={{
-                  color: primaryColor,
-                  fontSize: 14,
-                  fontWeight: "bold",
-                }}
-              >
-                Airport
-              </Text>
-            </Link>
-          </View>
-          <View
+            <Text
+              style={{
+                color: primaryColor,
+                fontSize: 14,
+                fontWeight: "400",
+              }}
+            >
+              Airport
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
             style={{
               justifyContent: "center",
               alignItems: "center",
@@ -422,20 +339,21 @@ export default function Page() {
               elevation: 2,
               borderRadius: 10,
             }}
+            onPress={() => {
+              router.push("/(topTabs)");
+            }}
           >
             <MaterialIcons name="local-gas-station" size={48} color="#ccc" />
-            <Link href="/(topTabs)">
-              <Text
-                style={{
-                  color: primaryColor,
-                  fontSize: 14,
-                  fontWeight: "bold",
-                }}
-              >
-                Fuel prices
-              </Text>
-            </Link>
-          </View>
+            <Text
+              style={{
+                color: primaryColor,
+                fontSize: 14,
+                fontWeight: "400",
+              }}
+            >
+              Fuel prices
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.contentBox}>
